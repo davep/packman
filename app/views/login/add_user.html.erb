@@ -1,0 +1,38 @@
+<% 
+  @site_title_main  = "Administration"
+  @site_title_other = "Add User"
+-%>
+
+<div class="user-editor">
+
+  <%= error_messages_for "user" %>
+
+  <fieldset>
+
+    <legend>Enter User Details</legend>
+    
+    <% form_for :user do |form| %>
+      <table class="main-details">
+        <tr>
+          <th><label for="user_name">Name:</label></th>
+          <td><%= form.text_field :name, :size => 40 %></td>
+        </tr>
+        <tr>
+          <th><label for="user_password">Password:</label></th>
+          <th><%= form.password_field :password, :size => 40 %></th>
+        </tr>
+        <tr>
+          <th><label for="user_password_confirmation">Password Confirmation:</label></th>
+          <td><%= form.password_field :password_confirmation, :size => 40 %></td>
+        </tr>
+      </table>
+
+      <p class="buttons">
+        <%= submit_tag "Add User", :class => "submit" %>
+      </p>
+
+    <% end %>
+
+  </fieldset>
+
+</div>

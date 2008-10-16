@@ -1,0 +1,62 @@
+<% 
+  @site_title_main  = "Bookings"
+  @site_title_other = "Edit Booking"
+-%>
+
+<div class="booking-editor">
+
+  <%= error_messages_for "booking" %>
+
+  <fieldset>
+
+    <legend>Booking</legend>
+
+    <% form_for( :booking, 
+                 :url => booking_path( @booking ),
+                 :html => { :method => :put } ) do |form| %>
+
+      <table class="main-details">
+        <tr>
+          <th><label for="courier_id">Courier:</label></th>
+          <td><%= form.collection_select( :courier_id, Courier.find( :all, :order => "name" ), :id, :name ) %></td>
+        </tr>
+        <tr>
+          <th><label for="booked_when">Booked:</label></th>
+          <td><%= form.calendar_date_select :booked_when, :popup => :force %></td>
+        </tr>
+        <tr>
+          <th><label for="booked_for">Booked for:</label></th>
+          <td><%= form.text_field :booked_for, :maxlength => 80 %></td>
+        </tr>
+        <tr>
+          <th><label for="destination">Destination:</label></th>
+          <td><%= form.text_field :destination, :maxlength => 80 %></td>
+        </tr>
+        <tr>
+          <th><label for="booking_ref">Booking Ref:</label></th>
+          <td><%= form.text_field :booking_ref, :maxlength => 80 %></td>
+        </tr>
+        <tr>
+          <th><label for="matter_number">Matter Number:</label></th>
+          <td><%= form.text_field :matter_number, :maxlength => 12 %></td>
+        </tr>
+        <tr>
+          <th><label for="expected_pickup">Expected Pickup:</label></th>
+          <td><%= form.calendar_date_select :expected_pickup, :popup => :force %></td>
+        </tr>
+        <tr>
+          <th><label for="notes">Notes:</label></th>
+          <td><%= form.text_area :notes, :cols => 80, :rows => 5 %></td>
+        </tr>
+      </table>
+
+      <div class="buttons">
+        <%= submit_tag "Update Booking", :name => "updatebook" %>
+        <%= submit_tag "Cancel",         :name => "cancel" %>
+      </div>
+
+    <% end %>
+
+  </fieldset>
+
+</div>

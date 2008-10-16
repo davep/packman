@@ -1,0 +1,49 @@
+<% 
+  @site_title_main  = "Welcome"
+  @site_title_other = "Welcome to PackMan"
+  unless pocket_ie?( request )
+    @extra_headers = [
+      javascript_include_tag( "http://simile.mit.edu/timeline/api/timeline-api.js" ),
+      javascript_include_tag( "timeline.js" ),
+      auto_discovery_link_tag( :rss, { :controller => :bookings, :action => :feed }, :title => "Expected Pickups" ) 
+    ]
+    @onLoad = "displayTimeline();"
+  end
+-%>
+
+<% unless pocket_ie?( request ) -%>
+  <%= periodically_call_remote(
+      :url       => { :action => :current_situation }, 
+      :update    => "current-situation", 
+      :frequency => 60,
+      :before    => "Element.show( 'spinner' );",
+      :complete  => "Element.hide( 'spinner' );",
+      :after     => "refreshTimeline();" )
+  %>
+<% end -%>
+
+<div class="welcome-screen">
+
+  <p class="welcome">
+    Welcome to PackMan<%= session[ :user_id ] ? " " + User.find( session[ :user_id ] ).name : ""  %>.
+  </p>
+
+  <%= image_tag "spinner.gif", :id => "spinner", :style => "display: none;" %>
+
+  <div id="current-situation">
+    <%= render :partial => "current_situation" %>
+  </div>
+
+  <h1>Things to do:</h1>
+  <ul>
+    <li><%= link_to "Create a new booking", new_booking_path %>.</li>
+    <li><%= link_to "Add a new courier",    new_courier_path %>.</li>
+  </ul>
+
+  <div class="not-handheld">
+    <h1>Timeline:</h1>
+    <div id="timeline"></div>
+  </div>
+
+</div>
+<br/>

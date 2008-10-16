@@ -1,0 +1,81 @@
+<% 
+  @site_title_main  = "Bookings"
+  @site_title_other = "View Booking"
+-%>
+
+<div class="booking-editor">
+
+  <fieldset>
+
+    <legend>Booking</legend>
+
+    <table class="main-details">
+      <tr>
+        <th>Courier:</label></th>
+        <td><%= h( @booking.courier.name ) %></td>
+      </tr>
+      <tr>
+        <th>Booked:</th>
+        <td><%= h( @booking.booked_when.to_s( :short ) ) %></td>
+      </tr>
+      <tr>
+        <th>Booked for:</th>
+        <td><%= h( @booking.booked_for ) %></td>
+      </tr>
+      <tr>
+        <th>Destination:</th>
+        <td><%= h( @booking.destination ) %></td>
+      </tr>
+      <tr>
+        <th>Booking Ref:</th>
+        <td><%= h( @booking.booking_ref ) %></td>
+      </tr>
+      <tr>
+        <th>Matter Number:</th>
+        <td><%= h( @booking.matter_number ) %></td>
+      </tr>
+      <% if @booking.waiting_pickup? -%>
+        <tr>
+          <th valign="top">Expected Pickup:</th>
+          <td>
+            <%= h( @booking.expected_pickup.to_s( :short ) ) %>
+            <br />
+            <% if @booking.overdue? -%>
+              <span class="overdue"><%= h( distance_of_time_in_words( Time.now, @booking.expected_pickup ).humanize ) %> overdue.</span>
+            <% else -%>
+              In <%= h( distance_of_time_in_words( Time.now, @booking.expected_pickup ) ) %>.
+           <% end %>
+          </td>
+        </tr>
+      <% end -%>
+      <% unless @booking.notes.empty? -%>
+        <tr>
+          <th valign="top">Notes:</th>
+          <td><%= simple_format( @booking.notes ) %></td>
+        </tr>
+      <% end -%>
+      <% if @booking.despatched? -%>
+        <tr>
+          <th>Despatched:</th>
+          <td><%= h( @booking.despatched_when.to_s( :short ) ) %></td>
+        </tr>
+        <tr>
+          <th>Despatch Ref:</th>
+          <td><%= h( @booking.despatched_ref ) %></td>
+        </tr>
+      <% end -%>
+    </table>
+
+    <br />
+
+    <p class="page-actions">
+      <%= link_to "Back to list", bookings_path( :page => params[ :page ] ) %>
+      <% unless @booking.despatched? -%>
+        <%= link_to "Edit", edit_booking_path( :page => params[ :page ] ) %>
+        <%= link_to "Despatch", despatch_booking_path( :page => params[ :page ] ) %>
+      <% end -%>
+    </p>
+
+  </fieldset>
+
+</div>

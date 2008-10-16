@@ -1,0 +1,7 @@
+== PackMan
+
+PackMan is my first go at writing a "proper" rails application. Currently
+there is no documentation, this might change at some point in the future.
+
+The idea behind the application is that it provides a simple method keeping
+on top of package collections in a busy office.

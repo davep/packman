@@ -1,0 +1,399 @@
+/***************************************************************************
+ * $Id: packman.css 20 2008-05-30 17:18:40Z davep $
+ */
+
+/*****
+ * Body config.
+ */
+
+body {
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 9pt; 
+  color: #000000;
+  background: #ff9933;
+  text-align: center;
+  min-width: 800px;
+}
+
+div.main {
+  color: #000000;
+  background: #ffffff;
+  margin: 0 auto;
+  width: 800px;
+  text-align: left;
+  padding: 1em;
+}
+
+div.footer {
+  width: 800px;
+  margin: 0 auto;
+  text-align: right;
+  color: #ffffff;
+  background: #cc0033;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+div.footer a {
+  text-decoration: none;
+  color: #ffffff;
+  background: inherit;
+  font-size: 90%;
+  padding-left: 1ex;
+  padding-right: 1ex;
+}
+
+div.footer a:hover {
+  text-decoration: underline;
+}
+
+/*****
+ * The title of the site.
+ */
+
+.site-title .pack {  
+  color: #ffffff;
+  background: inherit;
+}
+
+.site-title .man {  
+  color: #cccccc;
+  background: inherit;
+}
+
+.site-title a {
+  text-decoration: none;
+}
+
+.site-title {
+  width: 200px;
+  background: #000000;
+  color: inherit;
+  float: left;
+}
+
+.site-title .padding {
+  height: 1em;
+  background: #cc0033;
+  color: inherit; 
+}
+
+.site-title h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 200%;
+  color: #cccccc;
+  background: inherit;
+  padding-left: 5px;
+}
+
+.site-title h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #cccccc;
+  background: inherit;
+  font-size: 100%;
+  font-weight: normal;
+  padding-left: 5px;
+}
+
+/*****
+ * The title of the page.
+ */
+
+.page-title {
+  margin-left: 200px;
+  background: #dcd9c8;
+  color: inherit;
+}
+
+.page-title .padding {
+  height: 1em;
+  background: #cc0033;
+  color: inherit; 
+}
+
+.page-title h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 200%;
+  color: #000000;
+  background: inherit;
+  padding-left: 5px;
+}
+
+.page-title h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 100%;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+/*****
+ * Flash notice.
+ */
+
+#flash-notice {
+  border: solid 1px #cc0033;
+  color: #cc0033;
+  background: #ff9933;
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+  margin: 1em;
+}
+
+/*****
+ * For highlighting fields with errors.
+ */
+
+.fieldWithErrors input {
+  color: #ffffff;
+  background: red;
+}
+
+/*****
+ * Page actions.
+ */
+
+.page-actions {
+  margin-right: 1em;
+  text-align: right;
+}
+
+.page-actions a, .page-actions .search-button {
+  border: solid 1px #cc0033;
+  text-decoration: none;
+  color: #ffffff;
+  background: #ff9933;
+  font-weight: bold;
+  padding-left: 0.5ex;
+  padding-right: 0.5ex;
+}
+
+.page-actions a {
+  padding-top: 0.3ex;
+  padding-bottom: 0.2ex;
+}
+
+.page-actions a:hover, .page-actions .search-button:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background: #cc0033;
+}
+
+/*****
+ * Welcome screen.
+ */
+
+.welcome-screen .welcome {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.welcome-screen a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #cc0033;
+  background: inherit;
+}
+
+.welcome-screen a:hover {
+  text-decoration: underline;
+}
+
+.welcome-screen div#timeline {
+  border: solid 1px black;  
+  width: 750px;
+  height: 200px;
+}
+
+.welcome-screen #spinner {
+  float: right;
+}
+
+/*****
+ * General table/index stuff.
+ */
+
+table td.inline-actions {
+  text-align: center;
+}
+
+table .odd-line {
+  background: #ece9d8;
+}
+
+table .even-line {
+  background: #dcd9c8;
+}
+
+.inline-actions a {
+  border: solid 1px #cc0033;
+  text-decoration: none;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  margin-left: 1ex;
+  margin-right: 1ex;
+  color: #ffffff;
+  background: #ff9933;
+  font-weight: bold;
+  display: block;
+}
+
+.inline-actions a:hover {
+  color: #ffffff;
+  background: #cc0033;
+}
+
+/*****
+ * Courier index.
+ */
+
+table.couriers {
+  clear: both;
+  width: 100%;
+}
+
+table.couriers h1 {
+  margin-top: 0px;  
+  margin-bottom: 0px;
+}
+
+table.couriers th {
+  text-align: right;
+}
+
+/*****
+ * Booking index.
+ */
+
+table.bookings {
+  clear: both;
+  width: 100%;
+}
+
+table.bookings th {
+  text-align: right;
+}
+
+table.bookings a.courier {
+  text-decoration: none;
+  color: #cc0033;
+  background: inherit;
+}
+
+table.bookings a.courier:hover {
+  text-decoration: underline;
+}
+
+span.overdue {
+  font-weight: bold;
+}
+
+/*****
+ * Editors.
+ */
+
+fieldset {
+  margin: 1em;
+  color: inherit;
+  background: #eeeeee;
+}
+
+fieldset legend {
+  font-weight: bold;
+  font-size: 120%;
+  color: #ffffff;
+  background: #000000;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+fieldset table.main-details th {
+  text-align: right;
+}
+
+fieldset .buttons {
+  text-align: right;
+}
+
+fieldset .buttons input {
+  border: solid 1px #cc0033;
+  color: #ffffff;
+  background: #ff9933;
+  font-weight: bold;
+}
+
+fieldset .buttons input:hover {
+  color: #ffffff;
+  background: #cc0033;
+}
+
+/*****
+ * Pagination.
+ */
+
+.pagination {
+  clear: both;
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 120%;
+  font-weight: bold;
+  color: #cccccc;
+  background: inherit;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #5f7ba5;
+  background: inherit;
+}
+
+.pagination a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background: #5f7ba5;
+}
+
+.pagination .previous { 
+  float: left;
+  width: 20%;
+  text-align: left;
+}
+
+.pagination .pages {
+  float: left;
+  width: 60%;
+  text-align: center;
+}
+
+.pagination .next { 
+  float: left;
+  width: 20%;
+  text-align: right;
+}
+
+/*****
+ * Skype links.
+ */
+
+a.skype {
+  text-decoration: none;
+  color: #cc0033;
+  background: inherit;
+}
+
+a.skype:hover {
+  text-decoration: underline;
+}
+
+/*****
+ * Other bits and bobs.
+ */
+
+.nothing-here {
+  clear: both;
+  text-align: center;
+}

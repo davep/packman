@@ -1,0 +1,15 @@
+/*****
+ * General "not on mobile" stuff.
+ */
+
+.not-handheld {
+  display: none;
+}
+
+/*****
+ * The title of the page.
+ */
+
+.page-title {
+  margin-left: 0px;
+}

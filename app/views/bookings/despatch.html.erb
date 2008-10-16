@@ -1,0 +1,44 @@
+<% 
+  @site_title_main  = "Bookings"
+  @site_title_other = "Despatch"
+-%>
+
+<div class="despatch-editor">
+
+  <%= error_messages_for "booking" %>
+
+  <fieldset>
+
+    <legend>Despatch</legend>
+
+    <% form_for( :booking, 
+                 :url => booking_path( @booking ),
+                 :html => { :method => :put } ) do |form| %>
+
+      <%= form.hidden_field :despatched_by, :value => session[ :user_id ] %>
+
+      <table class="main-details">
+        <tr>
+          <th><label for="despatched_when">Despatched:</label></th>
+          <td><%= form.calendar_date_select :despatched_when, :popup => :force %></td>
+        </tr>
+        <tr>
+          <th><label for="despatched_ref">Despatch Ref:</label></th>
+          <td><%= form.text_field :despatched_ref, :maxlength => 50 %></td>
+        </tr>
+        <tr>
+          <th><label for="notes">Notes:</label></th>
+          <td><%= form.text_area :notes, :cols => 80, :rows => 5 %></td>
+        </tr>
+      </table>
+
+      <div class="buttons">
+        <%= submit_tag "Despatch", :name => "despatch" %>
+        <%= submit_tag "Cancel",   :name => "cancel" %>
+      </div>
+
+    <% end %>
+
+  </fieldset>
+
+</div>

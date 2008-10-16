@@ -1,0 +1,13 @@
+<% if pages -%>
+<div class="pagination">
+  <div class="previous">
+    <%= link_to "&laquo; Previous", { :page => pages.current.previous } if pages.current.previous %>&nbsp;
+  </div>
+  <div class="pages">
+    <%= pagination_links( pages ) %>
+  </div>
+  <div class="next">
+    &nbsp;<%= link_to "Next &raquo;", { :page => pages.current.next } if pages.current.next %> 
+  </div>
+</div>
+<% end -%>

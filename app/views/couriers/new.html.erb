@@ -1,0 +1,65 @@
+<% 
+  @site_title_main  = "Administration"
+  @site_title_other = "New Courier"
+-%>
+
+<div class="courier-editor">
+
+  <%= error_messages_for "courier" %>
+
+  <fieldset>
+
+    <legend>Courier</legend>
+
+    <% form_for( :courier, :url => couriers_path ) do |form| %>
+
+      <%= hidden_field_tag :source_page, params[ :page ] || 1 %>
+
+      <table class="main-details">
+        <tr>
+          <th><label for="courier_name">Courier Name:</label></th>
+          <td><%= form.text_field :name, :maxlength => 50 %></td>
+          <th><label for="courier_account_no">Account Number:</label></th>
+          <td><%= form.text_field :account_no, :maxlength => 10 %></td>
+        </tr>
+        <tr>
+          <th><label for="courier_contact">Contact:</label></th>
+          <td colspan="2"><%= form.text_field :contact, :maxlength => 80 %></td>
+        </tr>
+      </table>
+
+      <br />
+
+      <table>
+        <tr><td></td><th>Description</th><th>Number</th></tr>
+        <tr>
+          <th>Telephone 1:</th>
+          <td><%= form.text_field :tel_description_1, :maxlength => 30 %></td>
+          <td><%= form.text_field :tel_1, :maxlength => 30 %></td>
+        </tr>
+        <tr>
+          <th>Telephone 2:</th>
+          <td><%= form.text_field :tel_description_2, :maxlength => 30 %></td>
+          <td><%= form.text_field :tel_2, :maxlength => 30 %></td>
+        </tr>
+        <tr>
+          <th>Telephone 3:</th>
+          <td><%= form.text_field :tel_description_3, :maxlength => 30 %></td>
+          <td><%= form.text_field :tel_3, :maxlength => 30 %></td>
+        </tr>
+      </table>
+
+      <br />
+
+      <div class="buttons">
+        <%= submit_tag "Save",   :name => "save" %>
+        <%= submit_tag "Cancel", :name => "cancel" %>
+      </div>
+
+    <% end %>
+
+  </fieldset>
+
+  <br/>
+
+</div>

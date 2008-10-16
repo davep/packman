@@ -1,0 +1,32 @@
+<% 
+  @site_title_main  = "Administration"
+  @site_title_other = "Login"
+-%>
+
+<div class="login-screen">
+
+  <fieldset>
+
+    <legend>Please Log In</legend>
+
+    <% form_tag do %>
+      <table class="main-details">
+        <tr>
+          <th><label for="name">Name:</label></th>
+          <td><%= text_field_tag :name, params[ :name ] %></td>
+        </tr>
+        <tr>
+          <th><label for="password">Password:</label></th>
+          <td><%= password_field_tag :password, params[ :password ] %></td>
+        </tr>
+      </table>
+
+      <p class="buttons">
+        <%= submit_tag "Login" %>
+      </p>
+
+    <% end %>
+
+  </fieldset>
+
+</div>

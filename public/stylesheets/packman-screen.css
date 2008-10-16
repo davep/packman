@@ -1,0 +1,7 @@
+/***************************************************************************
+ * $Id: packman-screen.css 20 2008-05-30 17:18:40Z davep $
+ */
+
+fieldset .buttons input, .page-actions .search-button {
+  cursor: pointer;
+}

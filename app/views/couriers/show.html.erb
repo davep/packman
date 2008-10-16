@@ -1,0 +1,64 @@
+<% 
+  @site_title_main  = "Administration"
+  @site_title_other = "View Courier"
+-%>
+
+<div class="courier-editor">
+
+  <%= error_messages_for "courier" %>
+
+  <fieldset>
+
+    <legend>Courier</legend>
+
+    <table class="main-details">
+      <tr>
+        <th>Courier Name:</th>
+        <td style="width: 30em;"><%= @courier.name %></td>
+        <th>Account Number:</th>
+        <td><%= @courier.account_no %></td>
+      </tr>
+      <tr>
+        <th>Contact:</th>
+        <td colspan="2"><%= @courier.contact %></td>
+      </tr>
+    </table>
+
+    <br />
+
+    <table>
+      <% unless @courier.tel_1.empty? -%>
+        <tr>
+          <th><%= h( tel_desc( @courier.tel_description_1, "Tel 1" ) ) %>:</th>
+          <td><%= skypeify( @courier.tel_1 ) %></td>
+        </tr>
+      <% end -%>
+      <% unless @courier.tel_2.empty? -%>
+        <tr>
+          <th><%= h( tel_desc( @courier.tel_description_2, "Tel 2" ) ) %>:</th>
+          <td><%= skypeify( @courier.tel_2 ) %></td>
+        </tr>
+      <% end -%>
+      <% unless @courier.tel_3.empty? -%>
+        <tr>
+          <th><%= h( tel_desc( @courier.tel_description_3, "Tel 3" ) ) %>:</th>
+          <td><%= skypeify( @courier.tel_3 ) %></td>
+        </tr>
+      <% end -%>
+    </table>
+
+    <br />
+
+    <p class="page-actions">
+      <%= link_to "Back to list", couriers_path( :page => params[ :page ] ) %>
+      <%= link_to "Edit", edit_courier_path( :page => params[ :page ] ) %>
+      <% if @courier.destroyable? -%>
+        <%= link_to "Delete", courier_path( @courier ), :confirm => "Really delete #{@courier.name}?", :method => :delete %>
+      <% end -%>
+    </p>
+
+  </fieldset>
+
+  <br/>
+
+</div>

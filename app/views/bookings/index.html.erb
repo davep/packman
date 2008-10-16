@@ -1,0 +1,86 @@
+<% 
+  @site_title_main  = "Bookings"
+  @site_title_other = @title_other || "Outstanding Bookings"
+  @extra_headers    = [ auto_discovery_link_tag( :rss, { :controller => :bookings, :action => :feed }, :title => "Expected Pickups" ) ]
+-%>
+
+<p class="page-actions">
+  <%= link_to "Outstanding", :action => :index %>
+  <%= link_to "Overdue", :action => :overdue %>
+  <%= link_to "Despatched", :action => :despatched %>
+  <%= link_to "New Booking", :action => :new %>
+</p>
+
+<%= render :partial => "layouts/paginator", :locals => { :pages => @booking_pages } %>
+
+<% if @bookings.length.zero? -%>
+<p class="nothing-here">
+  No <%= @site_title_other %>.
+</p>
+<% end -%>
+
+<table class="bookings">
+  <% render_time = Time.now -%>
+  <% for booking in @bookings -%>
+    <tr class="<%= cycle( 'odd-line', 'even-line' ) %>">
+      <td width="90%">
+        <table>
+          <tr>
+            <th>Courier:</th><td style="width: 50ex;"><%= link_to h( booking.courier.name ), courier_path( booking.courier ), :class => :courier, :popup => true %></td>
+            <th>Booked By:</th><td><%= h( booking.booking_user.name ) %></td>
+          </tr>
+          <tr>
+            <th valign="top">Booked:</th>
+            <td>
+              <%= h( booking.booked_when.to_s( :short ) ) %>
+              <br/>
+              <%= h( distance_of_time_in_words( render_time, booking.booked_when ).humanize ) %> ago
+            </td>
+            <% if booking.waiting_pickup? -%>
+              <th valign="top">Expected Pickup:</th>
+              <td>
+                <%= h( booking.expected_pickup.to_s( :short ) ) %>
+                <br/>
+                <% unless booking.overdue?( render_time ) -%>
+                  In <%= h( distance_of_time_in_words( render_time, booking.expected_pickup ) ) %>
+                <% else -%>
+                  <span class="overdue">
+                    <%= h( distance_of_time_in_words( render_time, booking.expected_pickup ).humanize ) %> overdue
+                  </span>
+                <% end -%>
+              </td>
+            <% else -%>
+              <th valign="top">Despatched:</th>
+              <td>
+                <%= h( booking.despatched_when.to_s( :short ) ) %>
+                <br/>
+                <%= h( distance_of_time_in_words( render_time, booking.despatched_when ) ).humanize %> ago
+              </td>  
+            <% end -%>
+          </tr>
+          <tr>
+            <th>Booked for:</th>
+            <td><%= h( booking.booked_for ) %></td>
+            <th>Booking ref:</th>
+            <td><%= h( booking.booking_ref ) %></td>
+          </tr>
+          <tr>
+            <th>Destination:</th>
+            <td><%= h( booking.destination ) %></td>
+            <th>Matter #:</th>
+            <td><%= h( booking.matter_number ) %></td>
+          </tr>
+        </table>
+      </td>
+      <td class="inline-actions">
+        <%= link_to "View", booking_path( booking, :page => params[ :page ] ) %>
+        <% if booking.waiting_pickup? -%>
+          <%= link_to "Edit",     edit_booking_path( booking, :page => params[ :page ] ) %>
+          <%= link_to "Despatch", despatch_booking_path( booking ) %>
+        <% end -%>
+      </td>
+    </tr>
+  <% end -%>
+</table>
+
+<%= render :partial => "layouts/paginator", :locals => { :pages => @booking_pages } %>

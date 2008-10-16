@@ -1,0 +1,23 @@
+/*****
+ * Hide a bunch of stuff that won't be needed in a printout.
+ */
+
+.site-header { 
+  display: none;
+}
+
+.page-actions {
+  display: none;
+}
+
+.inline-actions {
+  display: none;
+}
+
+.pagination {
+  display: none;
+}
+
+.footer {
+  display: none;
+}

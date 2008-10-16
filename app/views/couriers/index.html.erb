@@ -1,0 +1,42 @@
+<% 
+  @site_title_main  = "Administration"
+  @site_title_other = "Couriers"
+-%>
+
+<% form_tag find_couriers_path, :method => :post do %>
+  <p class="page-actions">
+    <%= text_field_tag :id %>
+    <%= submit_tag "Search", :class => "search-button" %>
+    <%= link_to "Create a new Courier", :action => :new %>
+  </p>
+<% end %>
+
+<%= render :partial => "layouts/paginator", :locals => { :pages => @courier_pages } %>
+
+<table class="couriers">
+  <%for courier in @couriers -%>
+    <tr class="<%= cycle( 'odd-line', 'even-line' ) %>">
+      <td width="90%">
+        <h1><%= h( courier.name ) %></h1>
+        <table>
+          <tr><th>Account Number:</th><td><%= h( courier.account_no ) %></td></tr>
+          <% if courier.contact and !courier.contact.empty? -%><tr><th>Contact:</th><td><%= h( courier.contact ) %></td></tr><% end %>
+          <% unless courier.tel_1.empty? -%><tr><th><%= h( tel_desc( courier.tel_description_1, "Tel 1" ) ) %>:</th><td><%= skypeify( courier.tel_1 ) %></td></tr><% end %>
+          <% unless courier.tel_2.empty? -%><tr><th><%= h( tel_desc( courier.tel_description_2, "Tel 2" ) ) %>:</th><td><%= skypeify( courier.tel_2 ) %></td></tr><% end %>
+          <% unless courier.tel_3.empty? -%><tr><th><%= h( tel_desc( courier.tel_description_3, "Tel 3" ) ) %>:</th><td><%= skypeify( courier.tel_3 ) %></td></tr><% end %>
+        </table>
+      </td>
+      <td class="inline-actions">
+        <%= link_to "View", courier_path( courier, :page => params[ :page ] ) %>
+        <%= link_to "Edit", edit_courier_path( courier, :page => params[ :page ] ) %>
+        <% if courier.destroyable? -%>
+          <%= link_to "Delete", courier_path( courier ), :confirm => "Really delete #{courier.name}?", :method => :delete %>
+        <% end -%>
+      </td>
+    </tr>
+  <% end -%>
+</table>
+
+<%= render :partial => "layouts/paginator", :locals => { :pages => @courier_pages } %>
+
+<div style="clear: both;"></div>
